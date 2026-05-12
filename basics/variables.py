@@ -10,3 +10,6 @@ var3 = True
 a = input("")
 # You can see type of any value from type()
 print(type(var1))
+
+
+
