@@ -77,9 +77,9 @@ with open("data.txt", "r") as f:
 # File modes for binary: earlier it was 'r','w','a'
 # 'rb', 'wb', 'ab', b means binary mode
 # example of reading birany:-
-with open("image.png", "rb") as file:
-    data = file.read()
-print(data[:10])   # output may look like: b'\x89PNG\r\n\x1a\n', THIS is raw byte data.
+# with open("image.png", "rb") as file:
+#     data = file.read()
+# print(data[:10])   # output may look like: b'\x89PNG\r\n\x1a\n', THIS is raw byte data.
 # very useful in networking, APIs, sockets, databases, etc
 
 # ENCODING:
@@ -93,3 +93,96 @@ print(encoded)   # output: b'AI', NOW it became bytes.
 # DECODING:
 data = b'AI'
 print(data.decode())
+
+# CSV (Comma Seperated values):
+# Looks like: name, age
+#            Harshit, 20
+#            Teenu, 20        (Like spreadsheet values)
+# Better way to read CSV normally, python has a build in module for CSV 
+# import csv
+# with open("data.csv", "r") as f:
+#     reader = csv.reader(f)
+#     for row in reader:
+#         print(row)
+# Suppose csv is: name, skill
+#                Harshit, python
+# OUTPUT: ['name', 'skill']
+#         ['Harshit', 'Python']    Each row becomes list.
+# WRITING CSV -
+# import csv
+# with open("data.csv", "w", newline="") as f:  # newline="" prevents extra blank lines on some systems
+#     writer = csv.writer(f)
+#     writer.writerow(["name","skill"])
+#     writer.writerow(["Harshit","Python"])
+# creates proper CSV structure
+# QUESTION: Create CSV file: students.csv
+# Rows:
+# name,skill
+# Harshit,Python
+# Rahul,AI
+# Then: read CSV, print each row using loop, use f-string somewhere
+# CSV is good for rows/tables
+import csv
+with open("students.csv", "w", newline="") as f:
+    writer = csv.writer(f)
+    writer.writerow(["name", "skill"])
+    writer.writerow(["Harshit", "Python"])
+    writer.writerow(["Rahul", "AI"])
+with open("students.csv", "r") as f:
+    reader = csv.reader(f)
+    for row in reader:
+        print(row)
+
+# JSON (JavaScript Object Notation):
+# used for api, config, ai responses, database, etc
+# JSON looks like-
+# {
+#   "name": "Harshit",
+#   "skill": "Python",
+#   "age": 18
+# }
+# This above is same as python dictionary just assign a variable.
+# JSON became dominant because human-readable, machine-readable, language-independent, heirarchical structure.
+# Python has in-built module named json
+# JSON is good for- nested structured data, APIs, configurations, complex systems
+# WRITING JSON:
+import json
+data = {
+    "name":"Harshit",
+    "skill": "Python"
+}
+with open("data.json", "w") as f:
+    json.dump(data, f)     # rememver this json.dump(data, filename) to put data
+# READING JSON:
+with open("data.json", "r") as f:
+    data = json.load(f)    # remember this json.load() to fetch
+print(data)
+# Nested JSON example - CSV cannot represent this clearly but JSON can.
+# {
+#     "user": {
+#         "name": "Harshit",
+#         "skills": ["Python", "AI"]
+#     }
+# }
+# QUESTION: Create dictionary:
+# # Then:
+# save into profile.json
+# read it back
+# print:
+# Name: Harshit
+# Use:
+# json.dump
+# json.load
+# f-string
+# proper variable naming
+import json
+data = {
+    "name": "Harshit",
+    "domain": "AI Systems",
+    "skills": ["Python", "Backend"]
+}
+with open("profile.json", "w") as f:
+    json.dump(data, f)
+with open("profile.json", "r") as f:
+    data = json.load(f)
+print(f"Name: {data['name']}")
