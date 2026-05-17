@@ -1,0 +1,81 @@
+README MARKDOWN ELEMENTS:
+
+1) HEADINGS
+    # Main Title
+    ## Section
+    ### Subsection
+    #### Smaller Section
+
+2) EMPHASIS
+    Bold - **Important**
+    Italic - *word*
+    Bold + Italic - ***Important***
+
+3) INLINE CODE
+    Use backticks - `json.dump()`
+
+4) CODE BLOCKS
+    ```python
+    print("Hello")
+    ```
+    LANGUAGE TYPES:
+    python
+    bash
+    json
+    javascript
+    text
+    yaml
+
+5) BULLET POINTS
+    - item
+    - item
+        NESTED:
+        - Backend
+            -FastAPI
+
+6) NUMBERED LIST
+    1. Install Python
+    2. Run program
+    3. Create agent
+
+7) CHECKBOXES
+    - [x] JSON persistence
+    - [x] OOP architecture
+    - [ ] Add database
+    - [ ] Add FastAPI API
+
+8) HORIZONTAL LINE
+    ---
+    Separates sections cleanly.
+
+9) LINKS
+    Website:
+        [OpenAI](https://openai.com)
+    File:
+        [main.py](main.py)
+    Section Jump:
+        [Features](#features)
+
+10) IMAGES
+    ![Alt Text](image.png)
+
+11) TABLES
+    | Feature | Status |
+    |---------|--------|
+    | JSON Storage | ✅ |
+    | Database | ❌ |
+
+12) BLOCKQUOTES
+    > Important notes
+
+13) COLLAPSIBLE SECTIONS
+    <details>
+    <summary>Click to expand</summary>
+
+    Extra information here.
+
+    </details>
+
+14) BADGES
+    ![Python](https://img.shields.io/badge/Python-3.12-blue)
+
