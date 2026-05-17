@@ -1,6 +1,6 @@
 import json
-import os
 
+FILE_NAME = "agent_info.json"
 class Agent:
     def __init__(self, name, model, domain, task):
         self.name = name
@@ -9,14 +9,18 @@ class Agent:
         self.task = task
     def show_info(self):
         print(f"Your created Agent:\nName: {self.name}\nModel: {self.model}\nDomain: {self.domain}\nTask: {self.task}")
+    def to_dict(self):
+         return {
+              "Name": self.name,
+              "Model": self.model,
+              "Domain": self.domain,
+              "Task": self.task
+         }
 
 def view_agent():
-            with open("agent_info.json", "r") as f:
-                data = json.load(f)
-            return data
-
-class FileNotCreated(Exception):
-     pass
+    with open(FILE_NAME, "r") as f:
+        data = json.load(f)
+    return data
 
 while True:
     print("----Welcome to AGENT MANAGEMENT SYSTEM----")
@@ -26,7 +30,7 @@ while True:
     choice = input("Enter the option number to proceed: ").strip().lower()
 
     if choice == 'exit' or choice == '3':
-        print("Goodbye!")
+        print("Thanks for using. Have a nice day!")
         break
 
     elif choice == '1':
@@ -36,25 +40,24 @@ while True:
         task = input("Enter the task done by your agent: ")
         a = Agent(name, model, domain, task)
         a.show_info()
+
         # Now storing the data into json format
-        data = {
-            "Name": a.name,
-            "Model": a.model,
-            "Domain": a.domain,
-            "Task": a.task
-        }
+        data = a.to_dict()
         try:
-            if os.path.exists("agent_info.json"):
-                with open("agent_info.json", "r") as f:
-                    existing_agents = json.load(f)
-            else:
-                existing_agents = []
-            existing_agents.append(data)
-            with open("agent_info.json", "w") as f:
+            with open(FILE_NAME, "r") as f:
+                existing_agents = json.load(f)
+        except (FileNotFoundError, json.JSONDecodeError):
+            existing_agents = []
+        # append new agent data
+        existing_agents.append(data)
+        try:
+            with open(FILE_NAME, "w") as f:
                 json.dump(existing_agents, f, indent=4)
             print("Agent has been successfully created!")
-        except FileNotCreated as e:
-             print(f"File cannot be created: {e}")
+        except PermissionError:
+             print("System error: Do not have permission to write to 'agent_info.json'.")
+        except Exception as e:
+             print(f"An unexpected system error occured while saving: {e}")
 
     elif choice == '2':
         try:

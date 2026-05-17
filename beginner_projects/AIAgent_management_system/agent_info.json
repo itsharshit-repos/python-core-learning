@@ -1,14 +1,20 @@
 [
     {
-        "Name": "Research agent",
-        "Model": "GPT-4",
+        "Name": "Research Agent",
+        "Model": "GPT-4o",
         "Domain": "Research",
-        "Task": "Analyze LLM paper"
+        "Task": "Analyze research paper provided"
     },
     {
         "Name": "Coding Agent",
         "Model": "Claude opus 4.6",
         "Domain": "Coding",
-        "Task": "Code the methodology part of LLM paper"
+        "Task": "Code the methodology part of research paper"
+    },
+    {
+        "Name": "Vision Agent",
+        "Model": "Gemini pro 3.0",
+        "Domain": "Vision",
+        "Task": "See and analyze the image and graph in research paper"
     }
 ]
