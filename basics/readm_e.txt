@@ -79,3 +79,7 @@ README MARKDOWN ELEMENTS:
 14) BADGES
     ![Python](https://img.shields.io/badge/Python-3.12-blue)
 
+15) FOR BETTER TREE STYLE (copy paste this)
+    ├──
+    └──
+    │
