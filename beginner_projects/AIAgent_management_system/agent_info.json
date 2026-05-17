@@ -1,0 +1,14 @@
+[
+    {
+        "Name": "Research agent",
+        "Model": "GPT-4",
+        "Domain": "Research",
+        "Task": "Analyze LLM paper"
+    },
+    {
+        "Name": "Coding Agent",
+        "Model": "Claude opus 4.6",
+        "Domain": "Coding",
+        "Task": "Code the methodology part of LLM paper"
+    }
+]
