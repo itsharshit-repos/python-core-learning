@@ -1,8 +1,11 @@
 import time
 
 class AISystem:
-    def __init__(self, initial_credit=2):
+    def __init__(self, user_id, pin, model, initial_credit=2):
         self.user_credit = initial_credit
+        self.user_id = user_id
+        self.pin = pin
+        self.model = model
 
     def check_credit(self, func):
         def wrapper(*args, **kwargs):
@@ -19,12 +22,12 @@ class AISystem:
         print("\nADD CREDIT: Type your username and pin to add credit")
         while True:
             user = input("Enter your username ('xx' to cancel): ").strip()
-            pinn = input("Enter your 4 digin pin ('xx' to cancel): ").strip()
+            pinn = input("Enter your 4 digit pin ('xx' to cancel): ").strip()
             # adding the condition
             if user == 'xx' and pinn == 'xx':
                 print("GoodBye!")
                 break
-            elif user == user_id and pinn == pin:
+            elif user == self.user_id and pinn == self.pin:
                 print("Fetching data", end="")
                 for _ in range(5):
                     time.sleep(0.6)
@@ -64,13 +67,17 @@ class AISystem:
                 if payment_successful or payment == 'cancel' or payment == 'exit':
                     break
 
-            elif user == user_id and pinn != pin:
+            elif user == self.user_id and pinn != self.pin:
                 print("Password is incorrect! Try again!")
-            elif user != user_id and pinn == pin:
+            elif user != self.user_id and pinn == self.pin:
                 print("Username is incorrect! Try again!")
             else:
                 print("Username and password is incorrect!")
 
+
+class AIModel:
+    def __init__(self, model_name):
+        self.model_name = model_name
     def mock_ai_stream(self, prompt):
         clean_prompt = prompt.lower().strip()
         response = {
@@ -99,28 +106,29 @@ while True:
     if user_id == 'xx' and pin == 'xx':
         print("Come back soon!")
         break
-    elif len(user_id) < 5 or len(user_id) > 5 or len(pin) < 4 or len(pin) > 4:
+    elif len(user_id) != 5 or len(pin) != 4:
         print("Please enter valid username and password within the range!")
     else:
-        a = AISystem()
-        @a.check_credit
+        model = AIModel("DEMO-AI")
+        system = AISystem(user_id, pin, model)
+        @system.check_credit
         def call_ai_model(prompt):
             print(f"Prompt: {prompt}")
             print("Response: ", end="")
             
-            token_generation = a.mock_ai_stream(prompt)
+            token_generation = system.model.mock_ai_stream(prompt)
             for chunk in token_generation:
                 print(chunk, end="", flush=True)
             print()
 
         print("\n==== AI CHAT SESSION STARTED ====")
         while True:
-            if a.user_credit <= 0: 
+            if system.user_credit <= 0: 
                 print("\nCREDIT ENDED! Type: \n1. Add (to add credit)\n2. Exit")
                 action = input("Enter your choice: ").strip().lower()
                 
                 if action == '1' or action == 'add':
-                    a.add_credit()
+                    system.add_credit()
                 elif action == '2' or action == 'exit':
                     print("Please add credit to resume service!")
                     break
