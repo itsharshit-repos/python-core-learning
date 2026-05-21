@@ -107,7 +107,7 @@ while True:
         print("Come back soon!")
         break
     elif len(user_id) != 5 or len(pin) != 4:
-        print("Please enter valid username and password within the range!")
+        print("Please enter valid username and password within the asked range!")
     else:
         model = AIModel("DEMO-AI")
         system = AISystem(user_id, pin, model)
