@@ -114,3 +114,11 @@ print(re.findall(r"^AI", text))  # Output is ['AI'], means this line concludes, 
 print(re.findall(r"^Model", text))  # Output is [] No match because its NOT starting with Model
 
 #===============================================================================================================================
+
+# '$' is Ends with. Means match end
+text = "model.py"
+print(re.findall(r"py$", text))  # Output is ['py'] ends with py
+# Another example -
+print(re.findall(r"txt$", text))  # Output is [] because its NOT ending with txt
+
+#===============================================================================================================================
