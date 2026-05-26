@@ -122,3 +122,16 @@ print(re.findall(r"py$", text))  # Output is ['py'] ends with py
 print(re.findall(r"txt$", text))  # Output is [] because its NOT ending with txt
 
 #===============================================================================================================================
+
+# '[]' is Choices/Ranges. Means inside brackets choose one from here
+text = "cat bat hat"
+print(re.findall(r"[cb]", text))  # This line means match c or b result: ['c','b']
+# Now learn Range [0-9] means digit
+text = "AI25"
+print(re.findall(r"[0-9]", text))  # This line looks for the digit ranging between 0-9 in text! hence output ['2','5']
+# Range for letters, in two forms wither lowercase or uppercase
+text = "AIgpt"
+print(re.findall(r"[a-z]", text))  # It will sellect all lower case words from text, output: ['g', 'p', 't']
+# [a-z] for range in lowercase and [A-Z] for range in uppercase, and '+' can be applied here also
+
+#===============================================================================================================================
