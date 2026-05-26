@@ -93,3 +93,24 @@ print(re.findall(r"z*", text)) # Output will be: ['', '', '', ''] because same t
 
 #===============================================================================================================================
 
+# '\s' is Space characters Means match whitespace
+# This includes space (''), tab and new line
+# Example -
+text = "AI GPT"
+print(re.findall(r"\s", text))  # Output is [' '] means got it's whitespace
+# Another example -
+text = "AI   GPT"
+print(re.findall(r"\s", text))  # Output is [' ', ' ', ' '] means 3 whitespaces
+# But now again you want them togerther, then again we will use the '+'
+print(re.findall(r"\s+", text))  # Output is ['   ']
+
+#===============================================================================================================================
+
+# "^" is Start with. Means match 'beginning of string'
+text = "AI Model"
+print(re.findall(r"^AI", text))  # Output is ['AI'], means this line concludes, Is the line starting with word 'AI'?, if yes, Print
+# If no, then return []
+# Another example for empty return
+print(re.findall(r"^Model", text))  # Output is [] No match because its NOT starting with Model
+
+#===============================================================================================================================
