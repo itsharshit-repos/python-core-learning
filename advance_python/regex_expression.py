@@ -135,3 +135,35 @@ print(re.findall(r"[a-z]", text))  # It will sellect all lower case words from t
 # [a-z] for range in lowercase and [A-Z] for range in uppercase, and '+' can be applied here also
 
 #===============================================================================================================================
+
+# '[^ ]' is NOT. When this upper arrow comes inside a square bracket, it behaves as NOT. 
+# Square brackets we learned: [abc] means a or b or c. Now if we add '^' inside brackets, [^abc] means "anything except a,b,c"
+text = "AI2026"
+print(re.findall(r"[^0-9]", text))  # Output: ['A', 'I'] means it is NOT taking any digits from 0-9 
+# Another example -
+text = "error#404"
+print(re.findall(r"[^a-z]", text))  # Output: ['#', '4', '0', '4'] means it is NOT taking any digits from 0-9
+# We can combine them and use it like [^A-Za-z0-9] 
+
+#===============================================================================================================================
+
+# '?' is Optional. Means zero or one
+text = "color colour"
+print(re.findall(r"colou?r", text))  # Output is ['color', 'colour'] it removed u and presented then took another word
+# Another example -
+text = "The group looked at the grop."
+print(re.findall(r"grou?p", text))  # Output: ['group', 'grop']
+# The computer outputs both ['group', 'grop'] because the question mark ? acts like a switch that says: 
+# "This letter can either be here, or it can be completely missing. Either way is a perfect match!"
+# Your regex pattern is grou?p. The computer splits this pattern into three rules:
+# gro -> Must start with these exact letters.
+# u? -> Can have one u, or zero u's (completely empty).
+# p -> Must end with this exact letter. When Python looks at the text "The group looked at the grop.", it scans from left to right:
+# Word 1: Does it start with gro? Yes. Does it have zero or one u? Yes, it has exactly one u. Does it end with p? Yes.
+# Result: Match found! Python saves "group".
+# Word 2: Does it start with gro? Yes. Does it have zero or one u? Yes, it has zero u's. Does it end with p? Yes.
+# Result: Match found! Python saves "grop". Because the function re.findall() is built to find every single possible match in your 
+# text, it gives you back both words in a list: ['group', 'grop'].
+
+#===============================================================================================================================
+
