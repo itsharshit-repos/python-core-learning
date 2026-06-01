@@ -55,35 +55,28 @@ def add_credits_to_user(user_id: str, amount: int) -> User | None:
             return user
     return None
 
-def total_user() -> int:
-    users = get_users()
-    count = 0
-    for user in users:
-        count += 1
-    return count
-
-def count_active_users() -> int:
-    users = get_users()
-    count = 0
-    for user in users:
-        if user.is_active:
-            count += 1
-    return count
-
-def count_free_users() -> int:
-    users = get_users()
-    count = 0
-    for user in users:
-        if user.plan == 'free':
-            count += 1
-    return count
-
 def build_user_summary() -> dict[str, int]:
+    users = get_users()
+
+    total_count = 0
+    active_count = 0
+    pro_count = 0
+    free_count = 0
+    
+    for user in users:
+        total_count += 1
+        if user.is_active:
+            active_count += 1
+        if user.plan == "pro":
+            pro_count += 1
+        if user.plan == "free":
+            free_count += 1
+
     return {
-        "total_users": total_user(),
-        "active_users": count_active_users(),
-        "pro_users": count_pro_users(),
-        "free_users": count_free_users()
+        "total_users": total_count,
+        "active_users": active_count,
+        "pro_users": pro_count,
+        "free_users": free_count,
     }
 
 def main() -> None:
