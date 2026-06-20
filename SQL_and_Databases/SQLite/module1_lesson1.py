@@ -1,10 +1,10 @@
 import sqlite3
 
 # Establishing connection
-connection = sqlite3.connect("ai_usage.db")
+connection = sqlite3.connect("module1_lesson1.db")
 cursor = connection.cursor()
 
-# creating table if not exist
+# create table if not exist
 cursor.execute(
     """
 CREATE TABLE IF NOT EXISTS projects (
