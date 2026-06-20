@@ -45,7 +45,7 @@ connection = sqlite3.connect("module1_lesson4.db")
 connection.row_factory = sqlite3.Row
 cursor = connection.cursor()
 
-# creating table if not exist
+# create table if not exist
 cursor.execute(
     """
 CREATE TABLE IF NOT EXISTS projects (
