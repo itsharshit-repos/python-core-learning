@@ -59,10 +59,12 @@
 # CODING TASK
 import sqlite3
 
+# establishing connection
 connection = sqlite3.connect("module1_lesson3.db")
 connection.row_factory = sqlite3.Row
 cursor = connection.cursor()
 
+# creating table if not exist
 cursor.execute(
     """
 CREATE TABLE IF NOT EXISTS projects (
@@ -72,7 +74,7 @@ CREATE TABLE IF NOT EXISTS projects (
 )
 """
 )
-
+# inserting data into the table
 projects = [
     ("Vision System", 600),
     ("RAG Platform", 800),
@@ -84,8 +86,10 @@ INSERT INTO projects (name, credit_balance) VALUES (?,?)
 """,
 projects,
 )
+# commiting insert
 connection.commit()
 
+# selecting data from table
 cursor.execute(
     """
 SELECT id, name, credit_balance FROM projects
@@ -94,9 +98,10 @@ ORDER BY id
 )
 
 rows = cursor.fetchall()
-
+# fetching data
 for row in rows:
     print(f"Project ID: {row['id']}\nName: {row['name']}\nCredits: {row['credit_balance']}\nAs dictionary: {dict(row)}")
 
+# closing connection
 cursor.close()
 connection.close()
