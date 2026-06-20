@@ -70,7 +70,9 @@ import sqlite3
 connection = sqlite3.connect("module1_lesson2.db")
 cursor = connection.cursor()
 
-# executing SQL commands (creating table if not exist)
+# executing SQL commands: 
+
+# creating table if not exist
 cursor.execute(
     """
 CREATE TABLE IF NOT EXISTS projects (
