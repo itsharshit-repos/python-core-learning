@@ -107,6 +107,7 @@
 import sqlite3
 from contextlib import closing
 
+# auto closing connection and transaction using context managers
 with closing(sqlite3.connect("module1_lesson6.db")) as connection:
     connection.execute("PRAGMA foreign_keys = ON")
     cursor = connection.cursor()
