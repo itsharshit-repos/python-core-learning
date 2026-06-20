@@ -39,6 +39,7 @@ import sqlite3
 connection = sqlite3.connect("module1_lesson5.db")
 cursor = connection.cursor()
 
+# create table if not exist
 cursor.execute(
     """
 CREATE TABLE IF NOT EXISTS users (
@@ -49,6 +50,7 @@ CREATE TABLE IF NOT EXISTS users (
 """
 )
 
+# handling error cases using try/except
 try:
     cursor.execute(
         """
