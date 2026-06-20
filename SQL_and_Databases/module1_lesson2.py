@@ -66,9 +66,11 @@
 # CODING TASK:
 import sqlite3
 
+# establishing connection
 connection = sqlite3.connect("module1_lesson2.db")
 cursor = connection.cursor()
 
+# executing SQL commands (creating table if not exist)
 cursor.execute(
     """
 CREATE TABLE IF NOT EXISTS projects (
@@ -79,6 +81,7 @@ CREATE TABLE IF NOT EXISTS projects (
 """
 )
 
+# inserting data into table
 cursor.execute(
     """
 INSERT INTO projects (name, credit_balance) VALUES (?,?)
@@ -101,8 +104,10 @@ INSERT INTO projects (name, credit_balance) VALUES (?,?)
 (projects),
 )
 
+# commiting the insert 
 connection.commit()
 
+# selecting data to show
 cursor.execute(
     """
 SELECT id, name, credit_balance 
@@ -117,5 +122,6 @@ remaining_projects = cursor.fetchall()
 
 print(f"First: {first_project}\nNext two: {next_two_projects}\nRemaining: {remaining_projects}")
 
+# closing connection
 cursor.close()
 connection.close()
